@@ -1,0 +1,1 @@
+import{TypeStore as r}from"./needle-engine@4.10.1.js";import{T as t}from"./TetrisGame.6c1bc1ad.js";import"./three@0.169.11.js";import"./three-mesh-ui.8845d782.js";import"./three-examples.7b8c1dbd.js";import"./gltf-progressive.8ea06876.js";import"./three-quarks.691481cf.js";import"./postprocessing.5318e598.js";function f(){r.add("TetrisGame",t)}export{f as registerTypes};

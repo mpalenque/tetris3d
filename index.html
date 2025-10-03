@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="modulepreload" as="script" href="./assets/three@0.169.11.js">
+  <link rel="modulepreload" as="script" href="./assets/needle-engine@4.10.1.js">
+
+  <link rel="preload" as="fetch" href="./assets/Tetris.glb?v=1759523124565" type="model/gltf+json" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" fetchpriority="high" as="image" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMTYwIDE4Ny43NCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iODkuNjQiIHkxPSIxODQuODEiIHgyPSI5MC40OCIgeTI9IjIxLjg1IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjNjJkMzk5Ii8+PHN0b3Agb2Zmc2V0PSIuNTEiIHN0b3AtY29sb3I9IiNhY2Q4NDIiLz48c3RvcCBvZmZzZXQ9Ii45IiBzdG9wLWNvbG9yPSIjZDdkYjBhIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgxPSI2OS42OCIgeTE9IjE3OC45IiB4Mj0iNjguMDgiIHkyPSIxNi43NyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzBiYTM5OCIvPjxzdG9wIG9mZnNldD0iLjUiIHN0b3AtY29sb3I9IiM0Y2EzNTIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3NmEzMGEiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYyIgeDE9IjM2LjYiIHkxPSIxNTIuMTciIHgyPSIzNC43IiB5Mj0iODQuMTkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9Ii4xOSIgc3RvcC1jb2xvcj0iIzM2YTM4MiIvPjxzdG9wIG9mZnNldD0iLjU0IiBzdG9wLWNvbG9yPSIjNDlhNDU5Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNzZhMzBiIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImQiIHgxPSIxNS44MiIgeTE9IjE1My4yNCIgeDI9IjE4IiB5Mj0iOTAuODYiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyNjc4ODAiLz48c3RvcCBvZmZzZXQ9Ii41MSIgc3RvcC1jb2xvcj0iIzQ1N2E1YyIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzcxNzUxNiIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJlIiB4MT0iMTM1LjA4IiB5MT0iMTM1LjQzIiB4Mj0iMTQ4LjkzIiB5Mj0iNjMuNDciIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiMGQ5MzkiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlYWRiMDQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZiIgeDE9Ii00MTYzLjI1IiB5MT0iMjI4NS4xMiIgeDI9Ii00MTYwLjgxIiB5Mj0iMjIxNS4zNCIgZ3JhZGllbnRUcmFuc2Zvcm09InJvdGF0ZSgyMCA0MDg4LjQ5IDEzMzE2LjcxMikiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9Ii4xNyIgc3RvcC1jb2xvcj0iIzc0YWY1MiIvPjxzdG9wIG9mZnNldD0iLjQ4IiBzdG9wLWNvbG9yPSIjOTliZTMyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYzBjNDBhIi8+PC9saW5lYXJHcmFkaWVudD48c3ltYm9sIGlkPSJnIiB2aWV3Qm94PSIwIDAgMTYwIDE4Ny43NCI+PHBhdGggc3R5bGU9ImZpbGw6dXJsKCNhKSIgZD0iTTc5LjMyIDM2Ljk4djE1MC43Nkw5NSAxNzQuNTRsNi41OS0xNTYuMzEtMjIuMjcgMTguNzV6Ii8+PHBhdGggc3R5bGU9ImZpbGw6dXJsKCNiKSIgZD0iTTc5LjMyIDM2Ljk4IDU3LjA1IDE4LjIzbDYuNTkgMTU2LjMxIDE1LjY4IDEzLjJWMzYuOTh6Ii8+PHBhdGggc3R5bGU9ImZpbGw6dXJsKCNjKSIgZD0ibTI1LjE5IDEwNC44MyA4LjYzIDQ5LjA0IDEyLjUtMTQuOTUtMi40Ni01Ni40Mi0xOC42NyAyMi4zM3oiLz48cGF0aCBzdHlsZT0iZmlsbDp1cmwoI2QpIiBkPSJNMjUuMTkgMTA0LjgzIDAgOTAuMjRsMTYuOTcgNTMuODYgMTYuODUgOS43Ny04LjYzLTQ5LjA0eiIvPjxwYXRoIHN0eWxlPSJmaWxsOiM5YzMiIGQ9Ik00My44NiA4Mi41IDE4LjY5IDY3Ljk4IDAgOTAuMjRsMjUuMTggMTQuNTlMNDMuODYgODIuNXoiLz48cGF0aCBzdHlsZT0iZmlsbDp1cmwoI2UpIiBkPSJtMTM0LjgyIDc4LjY5LTkuOTcgNTYuNSAxNS41OC05LjA0TDE2MCA2NC4xbC0yNS4xOCAxNC41OXoiLz48cGF0aCBzdHlsZT0iZmlsbDp1cmwoI2YpIiBkPSJtMTM0LjgyIDc4LjY5LTE4LjY4LTIyLjMzLTIuODYgNjUgMTEuNTcgMTMuODMgOS45Ny01Ni41eiIvPjxwYXRoIHN0eWxlPSJmaWxsOiNmZmUxMTMiIGQ9Im0xNjAgNjQuMS0xOC42OS0yMi4yNi0yNS4xNyAxNC41MiAxOC42NyAyMi4zM0wxNjAgNjQuMXoiLz48cGF0aCBzdHlsZT0iZmlsbDojZjNlNjAwIiBkPSJNMTAxLjU5IDE4LjIzIDc5LjMyIDAgNTcuMDUgMTguMjNsMjIuMjcgMTguNzUgMjIuMjctMTguNzV6Ii8+PC9zeW1ib2w+PC9kZWZzPjx1c2Ugd2lkdGg9IjE2MCIgaGVpZ2h0PSIxODcuNzQiIHhsaW5rOmhyZWY9IiNnIi8+PC9zdmc+" type="image/svg+xml">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mpalenque.github.io/tetris3d/include/poster.webp">
+  <meta name="og:image" content="https://mpalenque.github.io/tetris3d/include/poster.webp">
+  <meta name="og:image:width" content=1080>
+  <meta name="og:image:height" content=1080>
+  <meta name="og:title" content="Tetris">
+  <meta name="generator" content="Unity 6000.0.33f1, Needle Engine Integration @4.10.1">
+  <meta name="needle-engine" content="4.10.1">
+  <meta name="needle:buildtime" content="2025-10-03T20:25:30.105Z">
+
+  <meta charset="UTF-8" />
+  <link rel="icon" href="./assets/favicon.8d99ceea.ico">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+
+  <title>Tetris</title>
+  
+  
+  <meta name="description" content="🌵 Made with Needle Engine">
+  <meta property="og:description" content="🌵 Made with Needle Engine" />
+  
+  <meta name="robots" content="index,follow">
+  <meta name="url" content="https://mpalenque.github.io/tetris3d">
+  
+  <!-- Google Fonts: DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  
+  <!-- MIDI Player Scripts (sin defer, carga síncrona como en chiplayer) -->
+  <script src='./include/midiplayer/WebAudioFontPlayer.js'></script>
+  <script src='./include/midiplayer/MIDIFile.js'></script>
+  <script src='./include/midiplayer/MIDIPlayer.js'></script>
+  
+  <style>
+    /* === ESTILOS GENERALES === */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      overflow: hidden;
+      background: #000000;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* === NEEDLE ENGINE (siempre visible en fondo) === */
+    needle-engine {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 1166px;
+      height: 1920px;
+      transform: translate(-50%, -50%);
+      transform-origin: center center;
+      z-index: 1;
+    }
+
+    /* === UI OVERLAY (sobre Needle Engine) === */
+    .ui-overlay {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 1166px;
+      height: 1920px;
+      transform: translate(-50%, -50%);
+      transform-origin: center center;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .game-ui-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+    }
+
+    /* === TOP HEADER === */
+    .game-header {
+      flex-shrink: 0;
+      background: rgba(0, 0, 0, 0.95);
+      border: 3px solid #dcee2d;
+      border-bottom: none;
+      padding: 0;
+      z-index: 100;
+      display: none; /* Oculto por defecto, se muestra al jugar */
+      pointer-events: all;
+    }
+
+    .header-title-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(101, 101, 101, 0.95);
+      padding: 3px 22px;
+      height: 91px;
+    }
+
+    .game-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 200;
+      font-size: 60px;
+      color: #dcee2d;
+      letter-spacing: -0.66px;
+      line-height: 1.5;
+    }
+
+    .game-level-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .level-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 200;
+      font-size: 40px;
+      color: #dcee2d;
+      letter-spacing: -0.44px;
+      line-height: 1.5;
+    }
+
+    .level-number {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 70px;
+      color: #dcee2d;
+      letter-spacing: -0.77px;
+      line-height: 1.5;
+    }
+
+    .yellow-separator {
+      width: 100%;
+      height: 3px;
+      background: #dcee2d;
+    }
+
+    .color-zones {
+      display: flex;
+      height: 73px;
+    }
+
+    .zone {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      opacity: 0.7;
+    }
+
+    .zone-text {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 200;
+      font-size: 42px;
+      letter-spacing: -0.462px;
+      line-height: 1.5;
+      z-index: 2;
+      position: relative;
+      mix-blend-mode: color-dodge;
+    }
+
+    .zone-red {
+      background: #cf4526;
+    }
+
+    .zone-red .zone-text {
+      color: #cf4526;
+    }
+
+    .zone-blue {
+      background: #21b1f8;
+    }
+
+    .zone-blue .zone-text {
+      color: #21b1f8;
+    }
+
+    .zone-green {
+      background: #47ebcd;
+    }
+
+    .zone-green .zone-text {
+      color: #47ebcd;
+    }
+
+    /* === ESPACIO CENTRAL (transparente para ver Needle) === */
+    .game-scene-spacer {
+      flex: 1;
+      pointer-events: none;
+    }
+
+    /* === BOTTOM FOOTER === */
+    .game-footer {
+      flex-shrink: 0;
+      background: rgba(33, 31, 35, 0.95);
+      border: 3px solid #dcee2d;
+      border-top: 2px solid #dcee2d;
+      height: 250px;
+      z-index: 100;
+      display: none; /* Oculto por defecto, se muestra al jugar */
+      align-items: center;
+      justify-content: center;
+      pointer-events: all;
+    }
+
+    /* === YELLOW BONUS INDICATOR (EN EL FOOTER) === */
+    .yellow-bonus-indicator {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      margin-left: 80px;
+    }
+
+    .yellow-bonus-indicator.active {
+      display: flex;
+      animation: bonusPulse 1s ease-in-out infinite;
+    }
+
+    @keyframes bonusPulse {
+      0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px rgba(220, 238, 45, 0.8));
+      }
+      50% { 
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 30px rgba(220, 238, 45, 1));
+      }
+    }
+
+    .bonus-text {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 50px;
+      color: #dcee2d;
+      letter-spacing: -0.55px;
+      line-height: 1.5;
+    }
+
+    .footer-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 800px;
+      padding: 0 96px;
+    }
+
+    .score-display {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .score-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 50px;
+      color: #dcee2d;
+      letter-spacing: -0.55px;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .score-value {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 100px;
+      color: #656565;
+      letter-spacing: -1.1px;
+      line-height: 1.5;
+    }
+
+    .arrow-indicator {
+      position: absolute;
+      right: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* === LOGO CON EFECTO DE LLENADO === */
+    .logo-container {
+      position: relative;
+      width: 200px;
+      height: 184.39px;
+    }
+
+    .logo-base {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      filter: brightness(0.5);
+    }
+
+    .logo-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      clip-path: inset(100% 0 0 0);
+      transition: clip-path 0.5s ease-out;
+      filter: brightness(1.2) saturate(1.3);
+    }
+
+    .logo-fill.filled {
+      filter: brightness(1.5) saturate(1.5) drop-shadow(0 0 15px #dcee2d) drop-shadow(0 0 30px #dcee2d);
+      animation: logoGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes logoGlow {
+      0%, 100% {
+        filter: brightness(1.5) saturate(1.5) drop-shadow(0 0 15px #dcee2d) drop-shadow(0 0 30px #dcee2d);
+      }
+      50% {
+        filter: brightness(1.8) saturate(1.8) drop-shadow(0 0 20px #dcee2d) drop-shadow(0 0 40px #dcee2d);
+      }
+    }
+
+    /* === OVERLAY SCREENS (FULLSCREEN) === */
+    .overlay-screens {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.95);
+      color: white;
+      text-align: center;
+      pointer-events: all;
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* === PANTALLA IDLE === */
+    #idle-screen .idle-message {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 200;
+      font-size: 60px;
+      text-transform: uppercase;
+      letter-spacing: -0.66px;
+      color: #dcee2d;
+      margin-bottom: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+      line-height: 1.5;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.02); }
+    }
+
+    #idle-screen .subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 200;
+      font-size: 40px;
+      color: #dcee2d;
+      letter-spacing: -0.44px;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    /* === PANTALLA INTRO === */
+    #intro-screen .intro-message {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 200;
+      font-size: 60px;
+      color: #dcee2d;
+      letter-spacing: -0.66px;
+      margin-bottom: 2rem;
+      animation: scaleIn 0.5s ease-out;
+      line-height: 1.5;
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+
+    #intro-screen .countdown {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 120px;
+      color: #dcee2d;
+      letter-spacing: -1.3px;
+      animation: countdownPulse 1s ease-in-out infinite;
+      line-height: 1.5;
+    }
+
+    @keyframes countdownPulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* === PANTALLA GAME OVER === */
+    #gameover-screen .gameover-message {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 80px;
+      color: #cf4526;
+      letter-spacing: -0.88px;
+      margin-bottom: 2rem;
+      animation: shake 0.5s ease-in-out;
+      line-height: 1.5;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-20px); }
+      75% { transform: translateX(20px); }
+    }
+
+    /* === BONUS FLASH OVERLAY === */
+    #bonus-flash-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(220, 238, 45, 0.4) 0%, rgba(220, 238, 45, 0) 70%);
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.1s ease-out;
+    }
+
+    #bonus-flash-overlay.flash-active {
+      animation: bonusFlash 1s ease-out;
+    }
+
+    @keyframes bonusFlash {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      15% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      30% {
+        opacity: 0.7;
+      }
+      50% {
+        opacity: 0.9;
+      }
+      70% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.2);
+      }
+    }
+
+    #gameover-screen .final-score,
+    #gameover-screen .final-lines {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 50px;
+      margin: 0.5rem 0;
+      color: #dcee2d;
+      letter-spacing: -0.55px;
+      line-height: 1.5;
+    }
+
+    #gameover-screen .final-score-value,
+    #gameover-screen .final-lines-value {
+      font-weight: 500;
+      font-size: 100px;
+      color: #656565;
+      letter-spacing: -1.1px;
+    }
+
+    #gameover-screen .restart-hint {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 200;
+      font-size: 40px;
+      color: #dcee2d;
+      letter-spacing: -0.44px;
+      margin-top: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+      line-height: 1.5;
+    }
+
+    /* === SCOREBOARD === */
+    #scoreboard-screen {
+      background: #000000;
+    }
+
+    #scoreboard-screen .scoreboard-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 200;
+      font-size: 60px;
+      color: #dcee2d;
+      letter-spacing: -0.66px;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .scoreboard-list {
+      width: 700px;
+      max-width: 90%;
+      background: #211f23;
+      border: 2px solid #dcee2d;
+      padding: 2rem;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    .scoreboard-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 50px;
+      letter-spacing: -0.55px;
+      line-height: 1.5;
+      transition: all 0.2s;
+    }
+
+    .scoreboard-item:hover {
+      background: rgba(220, 238, 45, 0.1);
+      transform: translateX(5px);
+    }
+
+    .scoreboard-item .rank {
+      color: #dcee2d;
+      font-weight: 500;
+      width: 80px;
+    }
+
+    .scoreboard-item .score {
+      color: #656565;
+      font-weight: 500;
+      font-size: 100px;
+      letter-spacing: -1.1px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .scoreboard-item .lines {
+      color: #656565;
+      font-weight: 500;
+      width: 150px;
+      text-align: right;
+    }
+
+    .scoreboard-empty {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 200;
+      color: #656565;
+      font-size: 40px;
+      letter-spacing: -0.44px;
+      padding: 2rem;
+      text-align: center;
+      line-height: 1.5;
+    }
+  </style>
+  <script type="module" crossorigin src="./assets/index-eb1f4139.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/three@0.169.11.js">
+  <link rel="modulepreload" crossorigin href="./assets/three-examples.7b8c1dbd.js">
+  <link rel="modulepreload" crossorigin href="./assets/gltf-progressive.8ea06876.js">
+</head>
+
+<body>
+  <script>/* needle: fix for peerjs */ window.global = window; var parcelRequire;</script>
+
+  <!-- Needle Engine SIEMPRE en el body (carga correctamente) -->
+  <needle-engine></needle-engine>
+
+  <!-- Flash overlay para efecto visual de bonus -->
+  <div id="bonus-flash-overlay"></div>
+
+  <!-- UI OVERLAY: Header + Footer + Pantallas -->
+  <div class="ui-overlay">
+    <!-- Layout Principal: Header + Espacio + Footer -->
+    <div class="game-ui-container">
+      <!-- TOP HEADER (visible solo durante el juego) -->
+      <div id="game-header" class="game-header">
+        <!-- Título y Level -->
+        <div class="header-title-section">
+          <div class="game-title">Name of the Game</div>
+          <div class="game-level-container">
+            <div class="level-label">LEVEL</div>
+            <div class="level-number">1</div>
+          </div>
+        </div>
+        
+        <!-- Línea amarilla separadora -->
+        <div class="yellow-separator"></div>
+        
+        <!-- Zonas de colores con texto -->
+        <div class="color-zones">
+          <div class="zone zone-red">
+            <span class="zone-text">PUBLIC</span>
+          </div>
+          <div class="zone zone-blue">
+            <span class="zone-text">PRIVATE</span>
+          </div>
+          <div class="zone zone-green">
+            <span class="zone-text">ON PREM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESPACIO CENTRAL (transparente para ver Needle Engine) -->
+      <div class="game-scene-spacer"></div>
+
+      <!-- BOTTOM FOOTER (Score durante el juego) -->
+      <div id="game-footer" class="game-footer">
+        <div class="footer-content">
+          <div class="score-display">
+            <div class="score-label">Score</div>
+            <div class="score-value current-score">0000000</div>
+          </div>
+          
+          <!-- YELLOW BONUS INDICATOR -->
+          <div id="yellow-bonus-indicator" class="yellow-bonus-indicator">
+            <div class="bonus-text" id="bonus-text">BONUS: 5</div>
+          </div>
+          
+          <div class="arrow-indicator">
+            <!-- Union logo from Figma con efecto de llenado -->
+            <div class="logo-container">
+              <img class="logo-base" src="./assets/union-logo.b2d6715f.svg" alt="Union Logo Base" />
+              <img class="logo-fill" id="logo-fill" src="./assets/union-logo.b2d6715f.svg" alt="Union Logo Fill" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANTALLAS FULLSCREEN (IDLE, INTRO, GAME OVER, SCOREBOARD) -->
+    <div class="overlay-screens">
+      <!-- Pantalla IDLE -->
+      <div id="idle-screen" class="screen">
+        <div class="idle-message">PRESS ANY BUTTON TO PLAY</div>
+        <div class="subtitle">Game</div>
+      </div>
+
+      <!-- Pantalla INTRO -->
+      <div id="intro-screen" class="screen">
+        <div class="intro-message">GET READY!</div>
+        <div class="countdown">3</div>
+      </div>
+
+      <!-- Pantalla GAME OVER -->
+      <div id="gameover-screen" class="screen">
+        <div class="gameover-message">GAME OVER</div>
+        <div style="display: flex; gap: 80px; margin-top: 40px;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <div class="final-lines">Lines</div>
+            <div class="final-lines-value">000</div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <div class="final-score">Score</div>
+            <div class="final-score-value">0000</div>
+          </div>
+        </div>
+        <div class="restart-hint">Press any key to continue...</div>
+      </div>
+
+      <!-- Pantalla SCOREBOARD -->
+      <div id="scoreboard-screen" class="screen">
+        <div class="scoreboard-title">🏆 High Scores 🏆</div>
+        <div class="scoreboard-list">
+          <!-- Se llenará dinámicamente desde GameStateManager -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Función para escalar la UI manteniendo la proporción de 1166x1920
+    function scaleUI() {
+      const baseWidth = 1166;
+      const baseHeight = 1920;
+      
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      
+      // Calcular la escala que mejor se ajuste
+      const scaleX = windowWidth / baseWidth;
+      const scaleY = windowHeight / baseHeight;
+      const scale = Math.min(scaleX, scaleY);
+      
+      // Aplicar la escala a needle-engine y ui-overlay
+      const needleEngine = document.querySelector('needle-engine');
+      const uiOverlay = document.querySelector('.ui-overlay');
+      
+      if (needleEngine) {
+        needleEngine.style.transform = `translate(-50%, -50%) scale(${scale})`;
+      }
+      
+      if (uiOverlay) {
+        uiOverlay.style.transform = `translate(-50%, -50%) scale(${scale})`;
+      }
+    }
+    
+    // Escalar al cargar la página
+    window.addEventListener('load', scaleUI);
+    
+    // Escalar cuando cambie el tamaño de la ventana
+    window.addEventListener('resize', scaleUI);
+    
+    // Llamar inmediatamente para evitar flash de contenido sin escalar
+    scaleUI();
+
+    // === SISTEMA DE LLENADO DEL LOGO ===
+    // Esta función será llamada desde GameStateManager
+    window.updateLogoFill = function(score, maxScore = 9999999) {
+      const logoFill = document.getElementById('logo-fill');
+      if (!logoFill) return;
+      
+      // Calcular porcentaje (0-100)
+      const percentage = Math.min(100, (score / maxScore) * 100);
+      
+      // El clip-path va desde el fondo (100%) hacia arriba (0%)
+      // inset(top right bottom left)
+      const topInset = 100 - percentage;
+      logoFill.style.clipPath = `inset(${topInset}% 0 0 0)`;
+      
+      // Agregar clase 'filled' para el efecto de brillo cuando está lleno
+      if (percentage >= 100) {
+        logoFill.classList.add('filled');
+      } else {
+        logoFill.classList.remove('filled');
+      }
+    };
+
+    // === SISTEMA DE INDICADOR DE BONUS AMARILLO ===
+    // Esta función será llamada desde TetrisGame
+    window.showYellowBonus = function(timeRemaining) {
+      const bonusIndicator = document.getElementById('yellow-bonus-indicator');
+      const bonusText = document.getElementById('bonus-text');
+      
+      if (!bonusIndicator || !bonusText) return;
+      
+      // Mostrar el indicador con la clase 'active'
+      bonusIndicator.classList.add('active');
+      
+      // Actualizar el texto con el tiempo restante (redondeado) - sin emojis
+      const seconds = Math.ceil(timeRemaining);
+      bonusText.textContent = `BONUS: ${seconds}`;
+    };
+
+    window.hideYellowBonus = function() {
+      const bonusIndicator = document.getElementById('yellow-bonus-indicator');
+      if (!bonusIndicator) return;
+      
+      // Ocultar el indicador removiendo la clase 'active'
+      bonusIndicator.classList.remove('active');
+    };
+
+    // === SISTEMA DE NIVEL ===
+    // Esta función será llamada desde TetrisGame
+    window.updateLevel = function(level) {
+      const levelNumber = document.querySelector('.level-number');
+      if (!levelNumber) return;
+      
+      // Actualizar el número de nivel
+      levelNumber.textContent = level;
+      console.log(`📊 UI actualizado: Nivel ${level}`);
+    };
+
+    // === SISTEMA DE MÚSICA (MIDI PLAYER) ===
+    var midiPlayer = null;
+    var musicStarted = false;
+    var musicTempo = 1.0;
+    
+    // Inicializar el reproductor MIDI inmediatamente (como en chiplayer)
+    try {
+      console.log('🎵 Inicializando reproductor MIDI...');
+      console.log('🔍 MIDIPlayer disponible:', typeof MIDIPlayer);
+      console.log('🔍 MIDIFile disponible:', typeof MIDIFile);
+      console.log('🔍 WebAudioFontPlayer disponible:', typeof WebAudioFontPlayer);
+      
+      midiPlayer = new MIDIPlayer();
+      midiPlayer.autoReplay = true; // Loop infinito
+      
+      // Cuando la canción se carga
+      midiPlayer.onload = function(song){
+        console.log('🎵 Canción cargada exitosamente, duración:', song.duration);
+      }
+      
+      // Manejar errores de carga
+      midiPlayer.onerror = function(error){
+        console.error('❌ Error cargando música:', error);
+      }
+      
+      // Cargar el archivo MIDI después de que la página termine de cargar
+      window.addEventListener('load', function(){
+        const midiUrl = './include/midiplayer/dance.mid';
+        console.log('🎵 Cargando MIDI desde:', midiUrl);
+        midiPlayer.handleURL(midiUrl);
+      });
+      
+      console.log('✅ MIDI Player inicializado correctamente');
+      
+    } catch (error) {
+      console.error('❌ Error inicializando reproductor MIDI:', error);
+    }
+    
+    // === SISTEMA DE EFECTOS DE SONIDO (SFX) ===
+    var sfxAudioContext = null;
+    
+    // Inicializar AudioContext para SFX
+    try {
+      var AudioContextSFX = window.AudioContext || window.webkitAudioContext;
+      sfxAudioContext = new AudioContextSFX();
+      console.log('✅ AudioContext para SFX inicializado');
+    } catch (error) {
+      console.error('❌ Error inicializando AudioContext para SFX:', error);
+    }
+    
+    // Función para tocar una nota 8-bit
+    function play8bitNote(frequency, duration, startTime, type) {
+      if (!sfxAudioContext) return;
+      
+      var oscillator = sfxAudioContext.createOscillator();
+      var gainNode = sfxAudioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(sfxAudioContext.destination);
+      
+      oscillator.type = type || 'square'; // Sonido 8-bit (square wave)
+      oscillator.frequency.value = frequency;
+      
+      // Envelope ADSR para sonido más limpio
+      var now = sfxAudioContext.currentTime + (startTime || 0);
+      gainNode.gain.setValueAtTime(0, now);
+      gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01); // Attack
+      gainNode.gain.linearRampToValueAtTime(0.2, now + 0.05); // Decay
+      gainNode.gain.setValueAtTime(0.2, now + duration - 0.05); // Sustain
+      gainNode.gain.linearRampToValueAtTime(0, now + duration); // Release
+      
+      oscillator.start(now);
+      oscillator.stop(now + duration);
+    }
+    
+    // SFX: Completar línea - "Truin!" (3 notas ascendentes)
+    window.playLineClearSFX = function() {
+      if (!sfxAudioContext) return;
+      
+      try {
+        // Asegurar que el AudioContext esté corriendo
+        if (sfxAudioContext.state === 'suspended') {
+          sfxAudioContext.resume();
+        }
+        
+        // Secuencia de 3 notas ascendentes tipo "truin!"
+        // C5 -> E5 -> G5 (acorde de Do Mayor)
+        play8bitNote(523.25, 0.08, 0, 'square');    // C5
+        play8bitNote(659.25, 0.08, 0.08, 'square'); // E5
+        play8bitNote(783.99, 0.15, 0.16, 'square'); // G5 (más larga)
+        
+        console.log('🎵 SFX: Línea completada');
+      } catch (error) {
+        console.error('❌ Error tocando SFX de línea:', error);
+      }
+    };
+    
+    // SFX: Bonus alcanzado - Sonido de power-up (melodía ascendente más elaborada)
+    window.playBonusSFX = function() {
+      if (!sfxAudioContext) return;
+      
+      try {
+        // Asegurar que el AudioContext esté corriendo
+        if (sfxAudioContext.state === 'suspended') {
+          sfxAudioContext.resume();
+        }
+        
+        // Secuencia tipo "power-up" - arpegio rápido ascendente
+        // C5 -> E5 -> G5 -> C6 (más heroico)
+        play8bitNote(523.25, 0.1, 0, 'square');     // C5
+        play8bitNote(659.25, 0.1, 0.08, 'square');  // E5
+        play8bitNote(783.99, 0.1, 0.16, 'square');  // G5
+        play8bitNote(1046.50, 0.25, 0.24, 'triangle'); // C6 (octava arriba, sonido más suave)
+        
+        console.log('⭐ SFX: ¡Bonus alcanzado!');
+      } catch (error) {
+        console.error('❌ Error tocando SFX de bonus:', error);
+      }
+    };
+    
+    // SFX: Entrar en modo bonus - Chime de 2 notas brillante
+    window.playEnterBonusSFX = function() {
+      if (!sfxAudioContext) return;
+      
+      try {
+        // Asegurar que el AudioContext esté corriendo
+        if (sfxAudioContext.state === 'suspended') {
+          sfxAudioContext.resume();
+        }
+        
+        // Sonido brillante de 2 notas: E6 -> G6 (chime ascendente)
+        play8bitNote(1318.51, 0.15, 0, 'sine');     // E6 - tono brillante
+        play8bitNote(1567.98, 0.25, 0.12, 'sine');  // G6 - más agudo y sostenido
+        
+        console.log('💛 SFX: Entrando en modo bonus');
+      } catch (error) {
+        console.error('❌ Error tocando SFX de entrada a bonus:', error);
+      }
+    };
+    
+    // SFX: Subir de nivel - Fanfare corta de 4 notas
+    window.playLevelUpSFX = function() {
+      if (!sfxAudioContext) return;
+      
+      try {
+        // Asegurar que el AudioContext esté corriendo
+        if (sfxAudioContext.state === 'suspended') {
+          sfxAudioContext.resume();
+        }
+        
+        // Fanfare de nivel: G4 -> C5 -> E5 -> G5 (ascendente triunfal)
+        play8bitNote(392.00, 0.12, 0, 'sawtooth');    // G4
+        play8bitNote(523.25, 0.12, 0.1, 'sawtooth');  // C5
+        play8bitNote(659.25, 0.12, 0.2, 'square');    // E5
+        play8bitNote(783.99, 0.3, 0.3, 'triangle');   // G5 (largo y triunfal)
+        
+        console.log('🆙 SFX: ¡Subiste de nivel!');
+      } catch (error) {
+        console.error('❌ Error tocando SFX de nivel:', error);
+      }
+    };
+    
+    // Función para activar el flash visual de bonus
+    window.triggerBonusFlash = function() {
+      try {
+        const flashOverlay = document.getElementById('bonus-flash-overlay');
+        if (!flashOverlay) {
+          console.warn('⚠️ Flash overlay no encontrado');
+          return;
+        }
+        
+        // Remover la clase si ya estaba activa (para reiniciar la animación)
+        flashOverlay.classList.remove('flash-active');
+        
+        // Forzar reflow para reiniciar la animación
+        void flashOverlay.offsetWidth;
+        
+        // Activar el flash
+        flashOverlay.classList.add('flash-active');
+        
+        // Remover la clase después de la animación (1 segundo)
+        setTimeout(() => {
+          flashOverlay.classList.remove('flash-active');
+        }, 1000);
+        
+        console.log('✨ Flash visual de bonus activado');
+      } catch (error) {
+        console.error('❌ Error activando flash visual:', error);
+      }
+    };
+    
+    // Función para iniciar la música (llamada cuando el juego empieza)
+    window.startMusic = function() {
+      try {
+        if (midiPlayer && !musicStarted) {
+          console.log('🎵 Iniciando música...');
+          midiPlayer.play();
+          musicStarted = true;
+        } else if (midiPlayer && musicStarted) {
+          // Si ya se inició antes, simplemente continuar
+          midiPlayer.play();
+        } else if (!midiPlayer) {
+          console.warn('⚠️ Reproductor MIDI no está inicializado');
+        }
+      } catch (error) {
+        console.error('❌ Error iniciando música:', error);
+      }
+    };
+    
+    // Función para pausar la música
+    window.pauseMusic = function() {
+      try {
+        if (midiPlayer) {
+          midiPlayer.pause();
+        }
+      } catch (error) {
+        console.error('❌ Error pausando música:', error);
+      }
+    };
+    
+    // Función para detener la música
+    window.stopMusic = function() {
+      try {
+        if (midiPlayer) {
+          midiPlayer.stop();
+          musicStarted = false;
+        }
+      } catch (error) {
+        console.error('❌ Error deteniendo música:', error);
+      }
+    };
+    
+    // Función para cambiar el tempo de la música (llamada desde TetrisGame)
+    window.setMusicTempo = function(tempo) {
+      try {
+        if (midiPlayer) {
+          musicTempo = tempo;
+          midiPlayer.setTempo(tempo);
+          console.log(`🎵 Tempo de música ajustado a: ${Math.round(tempo * 100)}%`);
+        }
+      } catch (error) {
+        console.error('❌ Error ajustando tempo:', error);
+      }
+    };
+    
+    // Función para resetear el tempo
+    window.resetMusicTempo = function() {
+      try {
+        if (midiPlayer) {
+          musicTempo = 1.0;
+          midiPlayer.setTempo(1.0);
+          console.log('🎵 Tempo de música reseteado a 100%');
+        }
+      } catch (error) {
+        console.error('❌ Error reseteando tempo:', error);
+      }
+    };
+  </script>
+
+  
+  
+</body>
+</html>
